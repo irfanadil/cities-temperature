@@ -10,10 +10,10 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.cities.weatherapp.R
 import com.cities.weatherapp.databinding.FragmentDashboardBinding
+
 import com.cities.weatherapp.ui.MainViewModel
 import com.cities.weatherapp.ui.citylisting.model.CityWeatherModel
 import dagger.hilt.android.AndroidEntryPoint
-
 
 @AndroidEntryPoint
 class CityListingFragment : Fragment() , CitySelectListener {
@@ -57,7 +57,7 @@ class CityListingFragment : Fragment() , CitySelectListener {
 
     override fun displayUpdatedWeatherOfSelectedCity(position: Int) {
         viewModel.getCityWeatherAndImage(citiesList[position].cityName)
-        findNavController().navigate(R.id.navigation_weather_screen)
+        findNavController().navigate(R.id.action_navigation_city_list_screen_to_navigation_weather_screen2)
     }
 }
 

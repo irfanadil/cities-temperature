@@ -54,7 +54,7 @@ class CitySelectionFragment : Fragment() , PlacePredictionAdapter.OnPlaceClickLi
                 val countrySelected = it.getSecondaryText(null).toString()
                 if (citySelected.isNotBlank() && citySelected.isNotEmpty() && countrySelected.isNotEmpty() && countrySelected.isNotBlank()) {
                     if (viewModel.saveCityToLocalList(citySelected, countrySelected))
-                        findNavController().navigate(R.id.navigation_city_list_screen)
+                        findNavController().navigate(R.id.action_navigation_selection_screen_to_navigation_city_list_screen)
                     else
                         requireContext().showToast("City name already added...")
                 }

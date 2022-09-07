@@ -13,9 +13,9 @@ class CitiesWeatherApp : Application() {
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
         }
-        Places.initialize(this, "AIzaSyBzPEiQOTReBzy6W1UcIyHApPu7_5Die6w")
     }
 
+    // To provide app context in the AppModule for non activity classes....
     companion object {
         lateinit var instance: CitiesWeatherApp
     }

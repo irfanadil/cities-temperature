@@ -10,12 +10,15 @@
         android:name="com.cities.weatherapp.ui.city.CitySelectionFragment"
         android:label="@string/select_city"
         tools:layout="@layout/fragment_home" >
+
+
         <action
-            android:id="@+id/action_navigation_home_to_navigation_dashboard"
-            app:destination="@id/navigation_city_list_screen" />
-        <action
-            android:id="@+id/action_navigation_selection_screen_to_navigation_weather_screen"
-            app:destination="@id/navigation_weather_screen" />
+            android:id="@+id/action_navigation_selection_screen_to_navigation_city_list_screen"
+            app:destination="@id/navigation_city_list_screen"
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/navigation_selection_screen"
+
+            />
     </fragment>
 
     <fragment
@@ -23,22 +26,27 @@
         android:name="com.cities.weatherapp.ui.citylisting.CityListingFragment"
         android:label="@string/weather"
         tools:layout="@layout/fragment_dashboard" >
+
+
         <action
-            android:id="@+id/action_navigation_dashboard_to_navigation_home"
-            app:destination="@id/navigation_selection_screen" />
+            android:id="@+id/action_navigation_city_list_screen_to_navigation_weather_screen2"
+            app:destination="@id/navigation_weather_screen"
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/navigation_city_list_screen"
+            />
     </fragment>
 
     <fragment
         android:id="@+id/navigation_weather_screen"
         android:name="com.cities.weatherapp.ui.weather.WeatherFragment"
         android:label="@string/title_weather"
-        tools:layout="@layout/fragment_notifications" >
-        <action
-            android:id="@+id/action_navigation_weather_screen_to_navigation_selection_screen"
-            app:destination="@id/navigation_selection_screen" />
-        <action
-            android:id="@+id/action_navigation_weather_screen_to_navigation_city_list_screen"
-            app:destination="@id/navigation_city_list_screen" />
+        tools:layout="@layout/fragment_notifications"
+        app:popUpToInclusive="true"
+        app:popUpTo="@id/navigation_city_list_screen"
+        >
+
+
+
     </fragment>
 
 
