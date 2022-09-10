@@ -7,6 +7,14 @@ plugins {
 
 
 android {
+    signingConfigs {
+        debug {
+            storeFile file('D:\\workspace\\rar files\\Test321-CitiesWeather.jks')
+            storePassword 'Test321'
+            keyAlias 'Test321'
+            keyPassword 'Test321'
+        }
+    }
     compileSdk 32
 
     defaultConfig {
@@ -17,6 +25,12 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        Properties properties = new Properties()
+        File file = project.rootProject.file("local.properties")
+        final InputStream anotherTargetStream = new FileInputStream(file);
+        properties.load(anotherTargetStream)
+        buildConfigField("String", "GOOGLE_PLACES_API_KEY", "\"${properties.getProperty("GOOGLE_PLACES_API_KEY")}\"")
     }
 
     buildTypes {
@@ -28,14 +42,14 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             //proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField "String", "BASE_URL", '"http://api.weatherapi.com/v1/"'
+            buildConfigField "String", "BASE_URL", '"https://api.weatherapi.com/v1/"'
 
         }
 
         debug {
-            buildConfigField "String", "BASE_URL", '"http://api.weatherapi.com/v1/"'
+            buildConfigField "String", "BASE_URL", '"https://api.weatherapi.com/v1/"'
         }
 
     }
@@ -104,7 +118,7 @@ dependencies {
 
     //Image Library
     implementation 'com.github.bumptech.glide:glide:4.13.2'
-    kapt 'com.github.bumptech.glide:compiler:4.13.0'
+    kapt 'com.github.bumptech.glide:compiler:4.13.2'
 
     // GOOGLE Places library...
     implementation 'com.google.android.libraries.places:places:2.6.0'

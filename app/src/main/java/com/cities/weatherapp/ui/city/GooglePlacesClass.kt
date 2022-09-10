@@ -95,6 +95,4 @@ class GooglePlacesClass(private val appContext:Context) {
         return showHidePlaces
     }
 
-
-
 }

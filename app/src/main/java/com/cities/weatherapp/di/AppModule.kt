@@ -1,7 +1,5 @@
 package com.cute.connection.di
 
-
-
 import android.content.Context
 import android.content.SharedPreferences
 import com.bumptech.glide.Glide
@@ -78,8 +76,8 @@ class AppModule {
                 .build()
         }
 
-        @Provides
-        @Singleton
+        @Provides@Singleton
+
         fun appServices(retrofit: Retrofit): ServerApi = retrofit.create(ServerApi::class.java)
 
         @Provides
