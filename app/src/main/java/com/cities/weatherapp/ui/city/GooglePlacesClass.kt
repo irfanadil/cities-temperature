@@ -22,14 +22,13 @@ import com.google.android.libraries.places.api.net.PlacesClient
 class GooglePlacesClass(private val appContext:Context) {
 
     private var predicationList: ArrayList<String> = ArrayList()
-    private lateinit var token: AutocompleteSessionToken
-    private lateinit var placesClient: PlacesClient
+    private var token: AutocompleteSessionToken = AutocompleteSessionToken.newInstance()
+    private var placesClient: PlacesClient
 
     private val _autoCompletePredicationList = MutableLiveData< List<AutocompletePrediction>>()
     val autoCompletePredicationList: LiveData< List<AutocompletePrediction>> = _autoCompletePredicationList
 
     init {
-        token = AutocompleteSessionToken.newInstance()
         token = AutocompleteSessionToken.newInstance()
         Places.initialize(appContext, "AIzaSyBzPEiQOTReBzy6W1UcIyHApPu7_5Die6w")
         placesClient = Places.createClient(appContext)
