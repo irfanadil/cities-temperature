@@ -4,6 +4,7 @@ package com.cities.weatherapp.ui.city
 import android.content.Context
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.cities.weatherapp.ui.SingleLiveEvent
@@ -12,6 +13,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.libraries.places.api.Places
 import com.google.android.libraries.places.api.model.AutocompletePrediction
 import com.google.android.libraries.places.api.model.AutocompleteSessionToken
+import com.google.android.libraries.places.api.model.PlaceTypes
 import com.google.android.libraries.places.api.model.TypeFilter
 import com.google.android.libraries.places.api.net.FindAutocompletePredictionsRequest
 import com.google.android.libraries.places.api.net.FindAutocompletePredictionsResponse
@@ -44,8 +46,8 @@ class GooglePlacesClass(private val appContext:Context) {
                 //.setLocationBias(bounds)
                 //.setLocationRestriction(bounds)
                 .setOrigin(LatLng(37.0902, 95.7129))
-                //s.setCountries("USA")
-                .setTypeFilter(TypeFilter.CITIES)
+                .setCountries("USA")
+                .setTypesFilter(listOf(PlaceTypes.ADDRESS))
                 .setSessionToken(token)
                 .setQuery(queryPlace)
                 .build()
@@ -53,17 +55,17 @@ class GooglePlacesClass(private val appContext:Context) {
         placesClient.findAutocompletePredictions(request)
             .addOnSuccessListener { response: FindAutocompletePredictionsResponse ->
                 for (prediction in response.autocompletePredictions) {
-                    //Log.e(TAG, prediction.placeId)
+                    Log.e("TAG", prediction.placeId)
                     response.autocompletePredictions
                     predicationList.add(prediction.getFullText(null).toString())
-                    // Log.e(TAG, prediction.getFullText(null).toString())
+                     Log.e("TAG", prediction.getFullText(null).toString())
                 }
                 //predictAdapter.setPredictions(response.autocompletePredictions)
                 _autoCompletePredicationList.value = response.autocompletePredictions
 
             }.addOnFailureListener { exception: Exception? ->
                 if (exception is ApiException) {
-                    //Log.e(TAG, "Place not found: " + exception.statusCode)
+                    Log.e("TAG", "Place not found: " + exception.statusCode  +exception.message +exception.toString())
                 }
             }
     }
